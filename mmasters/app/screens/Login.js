@@ -14,17 +14,25 @@ export default class Login extends Component {
         title: 'Login'
     };
 
+    constructor(props) {
+        super(props);
+        this.state = { userName: '' };
+    }
+
     render() {
         const { navigate } = this.props.navigation;
         return (
             <View style={styles.mainView}>
-                <View style={styles.topSpacer} />
+                <View style={styles.spacer} />
                 <Text>User Name:</Text>
-                <TextInput />
+                <TextInput 
+                    onChangeText={(userName) => this.setState({userName})} 
+                    value={this.state.userName} 
+                />
                 <Button 
                     title="Login"
                     onPress={() => {
-                        navigate('HomePage', { userName: 'Kevin' });
+                        navigate('HomePage', this.state);
                     }}
                 />
             </View>
@@ -33,6 +41,12 @@ export default class Login extends Component {
 }
 
 const styles = StyleSheet.create({
+    titleView: {
+
+    },
+    inputView: {
+
+    },
     mainView: {
         flex: 1,
         flexDirection: 'column'
